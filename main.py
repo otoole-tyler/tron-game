@@ -18,7 +18,7 @@ while running:
             running = False
     screen.fill((0, 0, 0))
 
-
+    # im a comment
 
     pygame.display.flip()
     clock.tick(60)
