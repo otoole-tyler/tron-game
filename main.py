@@ -61,11 +61,16 @@ class Player:
         elif y1 == y2:  # horizontal
             return self.y == y1 and min(x1, x2) <= self.x <= max(x1, x2)
         return False
+    
+    def is_outside_box(self):
+        if self.x < 0 or self.x > WIDTH: return True
+        elif self.y < 0 or self.y > HEIGHT: return True
+        else: return False
             
             
 
-Players.append(Player((255, 0, 0), [pygame.K_w, pygame.K_a, pygame.K_s, pygame.K_d], 750, 400, 'left'))
-Players.append(Player((0, 0, 255), [pygame.K_UP, pygame.K_LEFT, pygame.K_DOWN, pygame.K_RIGHT], 50, 400, 'right'))
+Players.append(Player((255, 0, 0), [pygame.K_w, pygame.K_a, pygame.K_s, pygame.K_d], 50, 400, 'right'))
+Players.append(Player((0, 0, 255), [pygame.K_UP, pygame.K_LEFT, pygame.K_DOWN, pygame.K_RIGHT], 750, 400, 'left'))
 
 running = True
 while running:
@@ -82,6 +87,8 @@ while running:
             for i in range(len(points)-1 - (other_player == player)):
                 if player.is_on_line(points[i], points[i+1]):
                     exit()
+        if player.is_outside_box():
+            exit()
 
 
     pygame.display.flip()
